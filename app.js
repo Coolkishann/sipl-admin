@@ -1,4 +1,6 @@
 import express from 'express';
+import fs from "fs";
+import path from "path";
 import connectDB from './config/database.js';
 import buildAdminRouter from './config/adminjs.js';
 import blogRoutes from './routes/blogRoutes.js';
@@ -25,6 +27,7 @@ app.use('/admin', adminRouter);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/contact', contactRoutes);
 app.get('/api/contacts/export', exportContacts);
+console.log("DEPLOY FILES:", fs.readdirSync(path.join(process.cwd())));
 
 // Start scheduler for blog auto-publishing
 startScheduler();
