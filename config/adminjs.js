@@ -7,19 +7,19 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 AdminJS.registerAdapter(AdminJSMongoose);
-
-// INIT COMPONENT LOADER
 const componentLoader = new ComponentLoader();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// WINDOWS-SAFE ABSOLUTE PATH
+// Add custom components
 const UploadImageComponent = componentLoader.add(
   "UploadImageComponent",
-  path.join(process.cwd(), "adminjs-components", "UploadImage.jsx")
+  path.resolve(__dirname, "../adminjs-components/UploadImage.jsx")
 );
-
 const buildAdminRouter = () => {
   const adminJs = new AdminJS({
     componentLoader,
+    
 
     resources: [
       {
